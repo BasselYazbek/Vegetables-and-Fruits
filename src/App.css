@@ -8,9 +8,13 @@ body {
 /** HEADER **/
 
 #header-nav {
-  background-color: #f6b319;
+  background-color: limegreen;
   border-radius: 0;
   border: 0;
+}
+
+#main-content{
+  background-color: burlywood;
 }
 
 #logo-img {
@@ -182,6 +186,19 @@ body {
   margin-bottom: 50px;
 }
 /* End MENU CATEGORIES PAGE */
+
+/* Sold Out Label */
+.sold-out-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: red;
+  color: white;
+  padding: 5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
 
 .card {
   text-align: center;

@@ -2,7 +2,7 @@
 const Footer = () => {
     return(
         <div>
-            <div className="panel-footer">
+            <div className="panel-footer custom-footer-background">
                 <div className="container">
                     <div className="row">
                         <section id="hours" class="col-sm-4">
@@ -21,7 +21,8 @@ const Footer = () => {
                             <p>"يتم الحصول على خضرواتنا وفواكهنا طازجة كل يوم، مما يضمن أفضل الأسعار وأعلى جودة للمنتجات."</p>
                         </section>
                     </div>
-                    <div className="text-center">&copy; Copyright "Sivedco Supermarket" since 2023</div>
+                    <div className="text-center" style={{ backgroundColor: 'lightbrown', padding: '10px', color: 'white' }}>
+                        &copy; Copyright "Sivedco Supermarket" since 2023</div>
                 </div>
             </div>
         </div>

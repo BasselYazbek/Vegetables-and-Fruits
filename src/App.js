@@ -5,11 +5,13 @@ import Main from './Main.js';
 import FruitsMenu from './FruitsMenu.js';
 import VegetablesMenu from './VegetablesMenu.js';
 import HerbsMenu from './HerbsMenu.js';
+import DiscountsMenu from './DiscountsMenu.js';
 import Footer from './Footer.js';
 
 function App() {  
   const urlParams = new URLSearchParams(window.location.search);
   const isAdmin = urlParams.get('owner') === 'true';
+
 
   return (
     <>
@@ -20,6 +22,7 @@ function App() {
             <Route path='/fruits' element={<FruitsMenu isAdmin={isAdmin}/>} />
             <Route path='/vegetables' element={<VegetablesMenu isAdmin={isAdmin}/>} />
             <Route path='/herbs' element={<HerbsMenu isAdmin={isAdmin}/>} />
+            <Route path='/items_on_discount' element={<DiscountsMenu isAdmin={isAdmin}/>} />
             <Route path='/' exact element={<Main />} />
           </Routes>
         <Footer />
