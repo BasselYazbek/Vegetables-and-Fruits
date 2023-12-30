@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
 import { Link } from 'react-router-dom';
-//import mainImage from "../src/Images/image00005.jpeg";
 
 const imagePaths = [
     require("../src/Images/image00005.jpeg"),

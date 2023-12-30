@@ -1,6 +1,6 @@
 body {
   font-size: 16px;
-  color: #fff;
+  color: #ffffff;
   background-color: #61122f;
   font-family: 'Oxygen', sans-serif;
 }
@@ -30,7 +30,7 @@ body {
 
 .navbar-brand h1 { /* Restaurant name */
   font-family: 'Lora', serif;
-  color: #557c3e;
+  color: #8CC84B;
   font-size: 1.5em;
   text-transform: uppercase;
   font-weight: bold;
@@ -80,6 +80,13 @@ body {
 #vegetables-tile {
   background: url('../src/Images/vegetables.jpg') no-repeat;
   background-position: center;
+  object-fit: contain;
+}
+
+#discounts-tile {
+  background: url('../src/Images/discounts.jpg') no-repeat;
+  background-position: center;
+  object-fit: contain;
 }
 
 #herbs-tile {
