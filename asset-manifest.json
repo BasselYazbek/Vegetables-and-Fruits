@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/vegetables-and-Fruits/static/css/main.8b36e1c4.css",
+    "main.js": "/vegetables-and-Fruits/static/js/main.80ac8210.js",
+    "static/js/787.091b7953.chunk.js": "/vegetables-and-Fruits/static/js/787.091b7953.chunk.js",
+    "static/media/image00007.jpeg": "/vegetables-and-Fruits/static/media/image00007.1a74e8736411daa1394e.jpeg",
+    "static/media/image00005.jpeg": "/vegetables-and-Fruits/static/media/image00005.82808debda452eefd818.jpeg",
+    "static/media/image00006.jpeg": "/vegetables-and-Fruits/static/media/image00006.0f1919fb85fd42447dff.jpeg",
+    "static/media/herbs.png": "/vegetables-and-Fruits/static/media/herbs.fd9e498dcfdc02fedbde.png",
+    "static/media/discounts.jpg": "/vegetables-and-Fruits/static/media/discounts.a38e4ac3aae682589256.jpg",
+    "static/media/vegetables.jpg": "/vegetables-and-Fruits/static/media/vegetables.ae04d487b8d4d1e06651.jpg",
+    "static/media/fruit_icon.jpg": "/vegetables-and-Fruits/static/media/fruit_icon.cb0c48b3222147124b76.jpg",
+    "index.html": "/vegetables-and-Fruits/index.html",
+    "main.8b36e1c4.css.map": "/vegetables-and-Fruits/static/css/main.8b36e1c4.css.map",
+    "main.80ac8210.js.map": "/vegetables-and-Fruits/static/js/main.80ac8210.js.map",
+    "787.091b7953.chunk.js.map": "/vegetables-and-Fruits/static/js/787.091b7953.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8b36e1c4.css",
+    "static/js/main.80ac8210.js"
+  ]
+}
