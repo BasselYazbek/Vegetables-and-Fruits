@@ -84,7 +84,7 @@ body {
 }
 
 #discounts-tile {
-  background: url('../src/Images/discounts.jpg') no-repeat;
+  background: url('../src/Images/Discount.png') no-repeat;
   background-position: center;
   background-size: cover;
 }
