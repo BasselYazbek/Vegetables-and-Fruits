@@ -2,9 +2,9 @@
 const Footer = () => {
     return (
       <div>
-        <div className="panel-footer custom-footer-background">
+        <div className="panel-footer custom-footer-background" style={{ backgroundColor: '#228B22', padding: '10px', color: 'white' }}>
           <div className="container">
-            <div className="row" style={{ backgroundColor: '#228B22', padding: '10px', color: 'white' }}>
+            <div className="row" >
               <section id="hours" class="col-sm-4">
                 <span>Hours:</span>
                 <br />

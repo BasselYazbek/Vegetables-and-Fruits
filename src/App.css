@@ -74,24 +74,25 @@ body {
 #fruits-tile {
   background: url('../src/Images/fruit_icon.jpg') no-repeat;
   background-position: center;
-  object-fit: contain;
+  background-size: cover;
 }
 
 #vegetables-tile {
   background: url('../src/Images/vegetables.jpg') no-repeat;
   background-position: center;
-  object-fit: contain;
+  background-size: cover;
 }
 
 #discounts-tile {
   background: url('../src/Images/discounts.jpg') no-repeat;
   background-position: center;
-  object-fit: contain;
+  background-size: cover;
 }
 
 #herbs-tile {
   background: url('../src/Images/herbs.png') no-repeat;
   background-position: center;
+  background-size: cover;
 }
 
 
@@ -306,6 +307,12 @@ h3.menu-item-title {
 /********** Extra small devices only **********/
 @media (max-width: 767px) {
   /* Header */
+  #header-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
   #logo-img {
       background: url('../src/Images/logo.jpg') no-repeat;
       width: auto;

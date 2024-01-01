@@ -70,7 +70,7 @@ const Nav = () => {
                   <span className="bi bi-info-circle"></span> About
                 </Link>
               </li>
-              <li className="nav-item d-none d-sm-block">
+              <li className="nav-item d-lg-none">
                 <a className="nav-link" href="tel:25-302283">
                   <span className="bi bi-telephone"></span>25-302283
                 </a>

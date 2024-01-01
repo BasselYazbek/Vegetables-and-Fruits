@@ -7,6 +7,7 @@ import VegetablesMenu from './VegetablesMenu.js';
 import HerbsMenu from './HerbsMenu.js';
 import DiscountsMenu from './DiscountsMenu.js';
 import Footer from './Footer.js';
+import About from './About.js';
 
 function App() {  
   const urlParams = new URLSearchParams(window.location.search);
@@ -24,6 +25,7 @@ function App() {
             <Route path='/herbs' element={<HerbsMenu isAdmin={isAdmin}/>} />
             <Route path='/items_on_discount' element={<DiscountsMenu isAdmin={isAdmin}/>} />
             <Route path='/' exact element={<Main />} />
+            <Route path='/about' exact element={<About />} />
           </Routes>
         <Footer />
       </div>

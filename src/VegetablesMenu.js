@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Vegetables from './Vegetables'
 import AddItemForm from './AddItemForm';
@@ -265,7 +264,7 @@ const VegetablesMenu = ({ isAdmin }) => {
 
   return (
     <>
-    <div style={{backgroundColor: '#87CEEB'}}>
+    <div style={{backgroundColor: '#FDF5E6'}}>
       <div className="container">
           <div className="row">
             {vegetablesMenu.map((item, index) => (
