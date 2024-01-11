@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Vegetables from './Vegetables'
 import AddItemForm from './AddItemForm';
+import { firestore } from './firebase';
 
-const VegetablesMenu = ({ isAdmin }) => {
+/* const VegetablesMenu = ({ isAdmin }) => {
   const initialMenuItems = [
     {
         name: 'خيار',
@@ -200,7 +201,26 @@ const VegetablesMenu = ({ isAdmin }) => {
         isEditing: localStorage.getItem(`editing_${item.name}`) === 'true',
       }))
     );
-  });
+  }); */
+  const VegetablesMenu = ({ isAdmin }) => {
+    const [vegetablesMenu, setVegetablesItems] = useState([]);
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const vegetablesCollection = firestore.collection('vegetables');
+          const snapshot = await vegetablesCollection.get();
+          console.log('Snapshot:', snapshot.docs);
+          const data = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+          console.log('Fetched Data:', data);
+          setVegetablesItems(data);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+  
+      fetchData();    
+    }, []);
 
   const saveItemsToLocalStorage = (items) => {
     localStorage.setItem('vegetablesItems', JSON.stringify(items));

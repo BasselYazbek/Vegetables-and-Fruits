@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Herbs from './Herbs';
 import AddItemForm from './AddItemForm';
+import { firestore } from './firebase';
 
-const HerbsMenu = ({ isAdmin }) => {
+
+/* const HerbsMenu = ({ isAdmin }) => {
   const initialMenuItems = [
     {
       id: 'بقدونس',
@@ -113,7 +115,24 @@ const [herbsMenu, setHerbsMenu] = useState(() => {
       isEditing: localStorage.getItem(`editing_${item.name}`) === 'true',
     }))
   );
-});
+}); */
+const HerbsMenu = ({ isAdmin }) => {
+  const [herbsMenu, setHerbsMenu] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const herbsCollection = firestore.collection('herbs');
+        const snapshot = await herbsCollection.get();
+        const data = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        setHerbsMenu(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+}, []);
 
 const saveItemsToLocalStorage = (items) => {
   localStorage.setItem('herbsItems', JSON.stringify(items));
@@ -181,7 +200,7 @@ return (
         <div className="row">
           {herbsMenu.map((item, index) => (
             <Herbs
-              key={index}
+              key={index.id}
               {...item}
               onEdit={handleEditItem}
               onDelete={handleDeleteItem}
