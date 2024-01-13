@@ -1,89 +1,87 @@
-// DiscountsMenu.js
-import React, { useState } from 'react';
-import AddItemForm from './AddItemForm';
+import React, { useState, useEffect } from 'react';
 import Discounts from './Discounts';
+import AddItemForm from './AddItemForm';
+import { firestore } from './firebase';
 
 const DiscountsMenu = ({ isAdmin }) => {
-  const initialMenuItems = [
-    {
-      name: 'أناناس',
-      imagePath: '/MenuPic/Fruits/pineapple.jpg',
-      price: 180000,
-      discountedPrice: 150000, // Example of setting a discounted price
-      isOutOfStock: false,
-      hidden: false,
-    },
-  ];
+  const [DiscountsMenu, setDiscountsMenu] = useState([]);
 
-  const [discountsMenu, setDiscountsMenu] = useState(() => {
-    const storedItems = JSON.parse(localStorage.getItem('discountsItems'));
-    console.log('Stored Items:', storedItems);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const discountsCollection = firestore.collection('discounts');
+        const snapshot = await discountsCollection.get();
+        const data = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        console.log('Fetched Data:', data);
+        setDiscountsMenu(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
-    return (
-      storedItems ||
-      initialMenuItems.map((item) => ({
-        ...item,
-        isEditing: localStorage.getItem(`editing_${item.name}`) === 'true',
-      }))
-    );
-  });
+    fetchData();
+  }, []);
 
-  const saveItemsToLocalStorage = (items) => {
-    localStorage.setItem('discountsItems', JSON.stringify(items));
-  };
+  const handleAddItem = async (newItem) => {
+    try {
+      const discountsCollection = firestore.collection('discounts');
+      const docRef = await discountsCollection.add({
+        ...newItem,
+        isOutOfStock: false,
+        hidden: false,
+      });
 
-  const handleAddItem = (newItem) => {
-    const newItemWithStock = { ...newItem, isOutOfStock: false };
-    setDiscountsMenu((prevItems) => [...prevItems, newItemWithStock]);
-    saveItemsToLocalStorage([...discountsMenu, newItemWithStock]);
-  };
-
-  const handleEditItem = (updatedItem) => {
-    setDiscountsMenu((prevItems) =>
-      prevItems.map((item) => (item.name === updatedItem.name ? updatedItem : item))
-    );
-
-    // Save the updated items to local storage
-    saveItemsToLocalStorage(discountsMenu.map((item) => (item.name === updatedItem.name ? updatedItem : item)));
-  };
-
-  const handleDeleteItem = (itemName) => {
-    const shouldDelete = window.confirm(`Are you sure you want to delete ${itemName}?`);
-
-    if (shouldDelete) {
-      setDiscountsMenu((prevItems) => prevItems.filter((item) => item.name !== itemName));
-      saveItemsToLocalStorage([...discountsMenu.filter((item) => item.name !== itemName)]);
+      setDiscountsMenu((prevItems) => [...prevItems, { ...newItem, id: docRef.id }]);
+    } catch (error) {
+      console.error('Error adding item to Firestore:', error);
     }
   };
 
-  const toggleStock = (itemName) => {
-    const itemIndex = discountsMenu.findIndex((item) => item.name === itemName);
-    const currentItem = discountsMenu[itemIndex];
+  const handleEditItem = async (updatedItem) => {
+    try {
+      const discountsCollection = firestore.collection('discounts');
+      await discountsCollection.doc(updatedItem.id).update(updatedItem);
 
-    // Ask for confirmation
-    const confirmMessage = currentItem.isOutOfStock
-      ? `Restore ${itemName} to regular stock?`
-      : `Mark ${itemName} as Out of Stock?`;
+      setDiscountsMenu((prevItems) =>
+        prevItems.map((item) => (item.id === updatedItem.id ? updatedItem : item))
+      );
+    } catch (error) {
+      console.error('Error updating item in Firestore:', error);
+    }
+  };
 
-    const shouldToggleStock = window.confirm(confirmMessage);
+  const handleDeleteItem = async (itemId) => {
+    const shouldDelete = window.confirm(`Are you sure you want to delete this item?`);
 
-    if (shouldToggleStock) {
-      // Toggle the 'isOutOfStock' property
-      const updatedItem = { ...currentItem, isOutOfStock: !currentItem.isOutOfStock };
+    if (shouldDelete) {
+      try {
+        const discountsCollection = firestore.collection('discounts');
+        await discountsCollection.doc(itemId).delete();
 
-      // Update the state
+        setDiscountsMenu((prevItems) => prevItems.filter((item) => item.id !== itemId));
+      } catch (error) {
+        console.error('Error deleting item from Firestore:', error);
+      }
+    }
+  };
+
+  const toggleStock = async (itemId) => {
+    const itemIndex = DiscountsMenu.findIndex((item) => item.id === itemId);
+    const currentItem = DiscountsMenu[itemIndex];
+
+    const updatedItem = { ...currentItem, isOutOfStock: !currentItem.isOutOfStock };
+
+    try {
+      const discountsCollection = firestore.collection('discounts');
+      await discountsCollection.doc(itemId).update(updatedItem);
+
       setDiscountsMenu((prevItems) => [
         ...prevItems.slice(0, itemIndex),
         updatedItem,
         ...prevItems.slice(itemIndex + 1),
       ]);
-
-      // Update local storage
-      saveItemsToLocalStorage([
-        ...discountsMenu.slice(0, itemIndex),
-        updatedItem,
-        ...discountsMenu.slice(itemIndex + 1),
-      ]);
+    } catch (error) {
+      console.error('Error updating item in Firestore:', error);
     }
   };
 
@@ -92,16 +90,16 @@ const DiscountsMenu = ({ isAdmin }) => {
       <div style={{ backgroundColor: '#FDF5E6' }}>
         <div className="container">
           <div className="row">
-            {discountsMenu.map((item, index) => (
+            {DiscountsMenu.map((item) => (
               <Discounts
-                key={index}
+                key={item.id}
                 {...item}
                 onEdit={handleEditItem}
                 onDelete={handleDeleteItem}
                 isAdmin={isAdmin}
                 onToggleStock={toggleStock}
                 isOutOfStock={item.isOutOfStock || false}
-                discountsMenu={discountsMenu}
+                DiscountsMenu={DiscountsMenu}
               />
             ))}
           </div>

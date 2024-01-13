@@ -8,7 +8,7 @@ body {
 /** HEADER **/
 
 #header-nav {
-  background-color: limegreen;
+  background-color: rgb(50, 205, 50);
   border-radius: 0;
   border: 0;
 }
@@ -18,26 +18,41 @@ body {
 }
 
 #logo-img {
-  background: url('../src/Images/logo.jpg') no-repeat;
-  width: 150px;
-  height: 150px;
-  margin: 10px 15px 10px 0;
+  background: url('../src/Images/sivedcologo.png') no-repeat;
+  width: 120px; /* Adjust the width as needed */
+  height: 120px; /* Adjust the height as needed */
+  margin-right: 10px; /* Add some margin for spacing */
 }
 
 .navbar-brand {
-  padding-top: 25px;
+  display: flex;
+  align-items: center;
 }
 
-.navbar-brand h1 { /* Restaurant name */
-  font-family: 'Lora', serif;
-  color: #8CC84B;
+.navbar-brand div {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px; /* Adjust margin as needed */
+}
+
+.navbar-brand h1 {
+  margin: 0; /* Remove margin to prevent spacing issues */
   font-size: 1.5em;
   text-transform: uppercase;
   font-weight: bold;
   text-shadow: 1px 1px 1px #222;
-  margin-top: 0;
-  margin-bottom: 0;
   line-height: .75;
+}
+
+.tagline {
+  color: #000;
+  text-transform: uppercase;
+  font-size: 0.7em;
+  margin-top: 5px; /* Adjust margin as needed */
+}
+
+.tagline span {
+  vertical-align: middle;
 }
 
 .navbar-brand a:hover, .navbar-brand a:focus {
@@ -314,19 +329,23 @@ h3.menu-item-title {
   }
 
   #logo-img {
-      background: url('../src/Images/logo.jpg') no-repeat;
-      width: auto;
-      height: auto;
-      margin: 10px 15px 10px 0;
-  }
+      background: url('../src/Images/sivedcologo.png') no-repeat;
+      width: 100px; /* Adjust the width as needed */
+      height: 100px; /* Adjust the height as needed */
+      margin-right: 10px; /* Add some margin for spacing */
+  } 
 
   .navbar-brand {
       padding-top: 10px;
       height: 80px;
   }
-  .navbar-brand h1 { /* Restaurant name */
-      padding-top: 10px;
-      font-size: 5vw; /* 1vw = 1% of viewport width */
+
+  .navbar-brand h1 {
+    font-size: 5vw; /* Adjust the font size for smaller screens */
+  }
+
+  .tagline {
+    font-size: 0.6em;
   }
   .navbar-brand p { /* Kosher cert */
       font-size: .6em;
@@ -401,14 +420,20 @@ h3.menu-item-title {
 /********** Super extra small devices Only :-) (e.g., iPhone 4) **********/
 @media (max-width: 479px) {
   /* Header */
+
+  #logo-img {
+    margin-top: 5%;
+    width: 120px; /* Adjust the width for smaller screens */
+    height: 120px; /* Adjust the height for smaller screens */
+  }
+
   .container .jumbotron {
       /* background: url('../images/2edit.jpg') no-repeat; */
       height: 100%;
       width: 100%;
   }
-  .navbar-brand h1 { /* Restaurant name */
-      padding-top: 5px;
-      font-size: 6vw;
+  .navbar-brand h1 {
+    font-size: 4vw; /* Adjust the font size for smaller screens */
   }
   /* End Header */
 
