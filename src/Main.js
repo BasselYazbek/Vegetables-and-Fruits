@@ -23,8 +23,8 @@ const Main = () => {
         }, []); // Empty dependency array means this effect runs once on mount
 
     return (
-        <>
-            <div id="main-content" className="container">
+        <div id="main-content">
+            <div className="container">
                 <div className="jumbotron">
                     <img src={imagePaths[currentImageIndex]} alt="Picture of restaurant" className="img-responsive d-none d-sm-block col-md-12 col-sm-12 col-xs-12" />
                 </div>
@@ -68,7 +68,7 @@ const Main = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
