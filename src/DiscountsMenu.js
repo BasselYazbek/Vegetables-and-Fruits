@@ -10,7 +10,7 @@ const DiscountsMenu = ({ isAdmin }) => {
     const fetchData = async () => {
       try {
         const discountsCollection = firestore.collection('discounts');
-        const snapshot = await discountsCollection.get();
+        const snapshot = await discountsCollection.where('hidden', '==', false).get();
         const data = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
         console.log('Fetched Data:', data);
         setDiscountsMenu(data);
@@ -56,7 +56,7 @@ const DiscountsMenu = ({ isAdmin }) => {
     if (shouldDelete) {
       try {
         const discountsCollection = firestore.collection('discounts');
-        await discountsCollection.doc(itemId).delete();
+        await discountsCollection.doc(itemId).update({ hidden: true }); // Set hidden to true instead of deleting
 
         setDiscountsMenu((prevItems) => prevItems.filter((item) => item.id !== itemId));
       } catch (error) {
