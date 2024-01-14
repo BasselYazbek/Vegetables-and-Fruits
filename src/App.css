@@ -322,6 +322,16 @@ h3.menu-item-title {
 /********** Extra small devices only **********/
 @media (max-width: 767px) {
   /* Header */
+  .container .jumbotron {
+    margin-top: 30px;
+    padding: 0;
+    background-size: cover;
+  }
+
+  body, #main-content {
+    background-color: burlywood !important;
+  }
+
   #header-nav {
     position: sticky;
     top: 0;

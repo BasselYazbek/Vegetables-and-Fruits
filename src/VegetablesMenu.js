@@ -10,7 +10,7 @@ const VegetablesMenu = ({ isAdmin }) => {
     const fetchData = async () => {
       try {
         const vegetablesCollection = firestore.collection('vegetables');
-        const snapshot = await vegetablesCollection.get();
+        const snapshot = await vegetablesCollection.where('hidden', '==', false).get();
         const data = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
         console.log('Fetched Data:', data);
         setVegetablesItems(data);
@@ -56,7 +56,7 @@ const VegetablesMenu = ({ isAdmin }) => {
     if (shouldDelete) {
       try {
         const vegetablesCollection = firestore.collection('vegetables');
-        await vegetablesCollection.doc(itemId).delete();
+        await vegetablesCollection.doc(itemId).update({ hidden: true }); // Set hidden to true instead of deleting
 
         setVegetablesItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
       } catch (error) {
